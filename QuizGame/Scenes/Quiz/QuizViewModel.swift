@@ -8,29 +8,35 @@
 import Foundation
 
 protocol QuizViewModelDelegate: AnyObject {
-    func fetchQuestion(_ question: Question)
-    func sumitAnswer()
+    func didFetchQuestion(_ question: Question)
+    func didSumitAnswer()
     func didEndQuiz()
     func showError()
 }
 
 class QuizViewModel {
-    weak var coordinator: QuizCoordinator?
+    weak var delegate: QuizViewModelDelegate?
     private let user: User
     private var currentQuestion: Question?
     private var score = 0
     private var questionCount = 0
+    private let totalQuestions = 10
     
-    init(coordinator: QuizCoordinator, user: User) {
-        self.coordinator = coordinator
+    init(user: User) {
         self.user = user
     }
     
     func fetchQuestion() {
         questionCount += 1
         QuizService.shared.fetchQuestion { [weak self] question in
+            guard let self = self else {return}
+            
+            if let question = question {
+                self.currentQuestion = question
+                self.de
+            }
             self?.currentQuestion = question
-            self?.updateUI(with: question)
+//            self?.updateUI(with: question)
         }
     }
     
