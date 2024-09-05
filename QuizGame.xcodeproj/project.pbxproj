@@ -24,6 +24,7 @@
 		2EF1ADF82C8A4E92003E0A1B /* QuizService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1ADF72C8A4E92003E0A1B /* QuizService.swift */; };
 		2EF1ADFA2C8A4F2E003E0A1B /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1ADF92C8A4F2E003E0A1B /* Response.swift */; };
 		2EF1ADFD2C8A4FB2003E0A1B /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1ADFC2C8A4FB2003E0A1B /* Question.swift */; };
+		2EF1ADFF2C8A75C7003E0A1B /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		2EF1ADF72C8A4E92003E0A1B /* QuizService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizService.swift; sourceTree = "<group>"; };
 		2EF1ADF92C8A4F2E003E0A1B /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		2EF1ADFC2C8A4FB2003E0A1B /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				2EF1ADE92C8A4A77003E0A1B /* Start */,
-				2EF1ADEB2C8A4B13003E0A1B /* User */,
 				2EF1ADEA2C8A4ACB003E0A1B /* Quiz */,
+				2EF1ADEB2C8A4B13003E0A1B /* Score */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -138,12 +140,12 @@
 			path = Quiz;
 			sourceTree = "<group>";
 		};
-		2EF1ADEB2C8A4B13003E0A1B /* User */ = {
+		2EF1ADEB2C8A4B13003E0A1B /* Score */ = {
 			isa = PBXGroup;
 			children = (
-				2EF1ADE02C8A4958003E0A1B /* User.swift */,
+				2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */,
 			);
-			path = User;
+			path = Score;
 			sourceTree = "<group>";
 		};
 		2EF1ADEC2C8A4B43003E0A1B /* Support */ = {
@@ -174,6 +176,7 @@
 		2EF1ADFB2C8A4F70003E0A1B /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				2EF1ADE02C8A4958003E0A1B /* User.swift */,
 				2EF1ADF92C8A4F2E003E0A1B /* Response.swift */,
 				2EF1ADFC2C8A4FB2003E0A1B /* Question.swift */,
 			);
@@ -263,6 +266,7 @@
 				2EF1ADF32C8A4D9A003E0A1B /* Service.swift in Sources */,
 				2EF1ADB02C8A432E003E0A1B /* AppDelegate.swift in Sources */,
 				2EF1ADF62C8A4E4F003E0A1B /* Endpoints.swift in Sources */,
+				2EF1ADFF2C8A75C7003E0A1B /* FinalScoreViewController.swift in Sources */,
 				2EF1ADC62C8A458A003E0A1B /* Coordinator.swift in Sources */,
 				2EF1ADF82C8A4E92003E0A1B /* QuizService.swift in Sources */,
 			);

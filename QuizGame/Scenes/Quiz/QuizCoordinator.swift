@@ -24,6 +24,7 @@ class QuizCoordinator: Coordinator {
     }
     
     func showFinalScore(score: Int) {
+        let finalViewController = FinalView
     }
     
     func backToStart() {
