@@ -9,12 +9,13 @@ import Foundation
 
 protocol QuizViewModelDelegate: AnyObject {
     func didFetchQuestion(_ question: Question)
-    func didSumitAnswer()
-    func didEndQuiz()
-    func showError()
+    func didSubmitAnswer(isCorrect: Bool, score: Int)
+    func didEndQuiz(finalScore: Int)
+    func showError(_ error: String)
 }
 
 class QuizViewModel {
+    weak var coordinator: QuizCoordinator?
     weak var delegate: QuizViewModelDelegate?
     private let user: User
     private var currentQuestion: Question?
@@ -22,21 +23,21 @@ class QuizViewModel {
     private var questionCount = 0
     private let totalQuestions = 10
     
-    init(user: User) {
+    init(coordinator: QuizCoordinator, user: User) {
         self.user = user
     }
     
     func fetchQuestion() {
         questionCount += 1
         QuizService.shared.fetchQuestion { [weak self] question in
-            guard let self = self else {return}
+            guard let self = self else { return }
             
             if let question = question {
                 self.currentQuestion = question
-                self.de
+                self.delegate?.didFetchQuestion(question)
+            } else {
+                self.delegate?.showError("Erro ao carregar a pergunta.")
             }
-            self?.currentQuestion = question
-//            self?.updateUI(with: question)
         }
     }
     
@@ -44,13 +45,18 @@ class QuizViewModel {
         guard let question = currentQuestion else { return }
         
         QuizService.shared.submitAnswer(for: question.id, answer: answer) { [weak self] result in
+            guard let self = self else { return }
+            
             if result {
-                self?.score += 10
+                self.score += 10
             }
-            if self?.questionCount == 10 {
-                self?.endQuiz()
+            
+            self.delegate?.didSubmitAnswer(isCorrect: result, score: self.score)
+            
+            if self.questionCount == self.totalQuestions {
+                self.endQuiz()
             } else {
-                self?.fetchQuestion()
+                self.fetchQuestion()
             }
         }
     }
