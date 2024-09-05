@@ -98,15 +98,29 @@ extension QuizViewController: QuizViewModelDelegate {
     }
     
     func didSubmitAnswer(isCorrect: Bool, score: Int) {
-        <#code#>
+        let message = isCorrect ? "Resposta correta" : "Resposta errada"
+        let alert = UIAlertController(title: "Resultado", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
+            self.viewModel.fetchQuestion()
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     func didEndQuiz(finalScore: Int) {
-        <#code#>
+        let alert = UIAlertController(title: "Quiz finalizado", message: "Sua pontuação final é \(finalScore). Deseja tentar novamente?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Tentar novamente", style: .default, handler: { _ in
+            self.viewModel.fetchQuestion()
+        }))
+        alert.addAction(UIAlertAction(title: "Voltar", style: .cancel, handler: { _ in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        present(alert, animated: true, completion: nil)
     }
     
     func showError(_ error: String) {
-        <#code#>
+        let alert = UIAlertController(title: "Erro", message: error, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     
