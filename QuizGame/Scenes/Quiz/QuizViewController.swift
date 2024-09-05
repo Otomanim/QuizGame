@@ -47,6 +47,7 @@ class QuizViewController: UIViewController {
         
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         optionsStackView.translatesAutoresizingMaskIntoConstraints = false
+        submitButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             questionLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
