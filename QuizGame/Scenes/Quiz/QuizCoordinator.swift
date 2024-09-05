@@ -23,5 +23,10 @@ class QuizCoordinator: Coordinator {
         navigationController.pushViewController(quizViewController, animated: true)
     }
     
+    func showFinalScore(score: Int) {
+    }
     
+    func backToStart() {
+        navigationController.popToRootViewController(animated: true)
+    }
 }
