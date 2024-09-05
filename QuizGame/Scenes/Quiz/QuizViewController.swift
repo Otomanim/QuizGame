@@ -91,3 +91,23 @@ class QuizViewController: UIViewController {
         sender.backgroundColor = .lightGray
     }
 }
+
+extension QuizViewController: QuizViewModelDelegate {
+    func didFetchQuestion(_ question: Question) {
+        questionLabel.text = question.statement
+    }
+    
+    func didSubmitAnswer(isCorrect: Bool, score: Int) {
+        <#code#>
+    }
+    
+    func didEndQuiz(finalScore: Int) {
+        <#code#>
+    }
+    
+    func showError(_ error: String) {
+        <#code#>
+    }
+    
+    
+}
