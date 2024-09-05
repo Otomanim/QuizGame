@@ -7,6 +7,13 @@
 
 import Foundation
 
+protocol QuizViewModelDelegate: AnyObject {
+    func fetchQuestion(_ question: Question)
+    func sumitAnswer()
+    func didEndQuiz()
+    func showError()
+}
+
 class QuizViewModel {
     weak var coordinator: QuizCoordinator?
     private let user: User
