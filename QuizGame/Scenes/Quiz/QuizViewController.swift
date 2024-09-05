@@ -13,6 +13,7 @@ class QuizViewController: UIViewController {
     private let questionLabel = UILabel()
     private let optionsStackView = UIStackView()
     private var selectedOption: String?
+    private let submitButton = UIButton()
     
     init(viewModel: QuizViewModel) {
         self.viewModel = viewModel
@@ -40,6 +41,10 @@ class QuizViewController: UIViewController {
         optionsStackView.spacing = 10
         view.addSubview(optionsStackView)
         
+        submitButton.setTitle("Enviar Resposta", for: .normal)
+        submitButton.addTarget(self, action: #selector(submitAnswer), for: .touchUpInside)
+        view.addSubview(submitButton)
+        
         questionLabel.translatesAutoresizingMaskIntoConstraints = false
         optionsStackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -52,6 +57,8 @@ class QuizViewController: UIViewController {
             optionsStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             optionsStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
+            submitButton.topAnchor.constraint(equalTo: optionsStackView.bottomAnchor, constant: 20),
+            submitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
     }
     
