@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  QuizGame
+
+  Created by Evandro Rodrigo Minamoto on 05/09/24.
+  
+*/
+
+"Your_score" = "Sua pontuação:";
+"Try Again" = "Tentar Novamente";
+"To go out" = "Sair";
+"Enter your name" = "Insira seu nome";
+"Start Quiz" = "Iniciar Quiz";
+"Please enter a name." = "Por favor, insira um nome.";
+"Send reply" = "Enviar Resposta";
+"Please select an answer." = "Por favor, selecione uma resposta.";
+"Correct answer" = "Resposta correta";
+"Wrong answer" = "Resposta errada";
+"Result" = "Resultado";
+"Quiz finished" = "Quiz finalizado";
+"Your final score is . Do you want to try again?" = "Sua pontuação final é . Deseja tentar novamente?";
+"To go back" = "Voltar";
+"Error" = "Erro"

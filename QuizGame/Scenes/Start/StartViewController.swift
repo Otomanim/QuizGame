@@ -31,11 +31,11 @@ class StartViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
-        nameTextField.placeholder = "Insira seu nome"
+        nameTextField.placeholder = "Enter your name".lang
         nameTextField.borderStyle = .roundedRect
         view.addSubview(nameTextField)
         
-        startButton.setTitle("Iniciar Quiz", for: .normal)
+        startButton.setTitle("Start Quiz".lang, for: .normal)
         startButton.addTarget(self, action: #selector(startQuiz), for: .touchUpInside)
         view.addSubview(startButton)
         
@@ -63,7 +63,7 @@ class StartViewController: UIViewController {
     
     @objc private func startQuiz() {
         guard let name = nameTextField.text, !name.isEmpty else {
-            showAlert(message: "Por favor, insira um nome.")
+            showAlert(message: "Please enter a name.".lang)
             return
         }
         viewModel.startQuiz(with: name)

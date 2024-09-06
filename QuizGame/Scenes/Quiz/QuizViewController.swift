@@ -41,7 +41,7 @@ class QuizViewController: UIViewController {
         view.addSubview(optionsStackView)
         
         let submitButton = UIButton(type: .system)
-        submitButton.setTitle("Enviar Resposta", for: .normal)
+        submitButton.setTitle("Send reply".lang, for: .normal)
         submitButton.addTarget(self, action: #selector(submitAnswer), for: .touchUpInside)
         view.addSubview(submitButton)
         
@@ -65,7 +65,7 @@ class QuizViewController: UIViewController {
     
     @objc private func submitAnswer() {
         guard let selectedOption = selectedOption else {
-            showAlert(message: "Por favor, selecione uma resposta.")
+            showAlert(message: "Please select an answer.".lang)
             return
         }
         viewModel.submitAnswer(selectedOption)
@@ -106,8 +106,8 @@ extension QuizViewController: QuizViewModelDelegate {
     }
     
     func didSubmitAnswer(isCorrect: Bool, score: Int) {
-        let message = isCorrect ? "Resposta correta" : "Resposta errada"
-        let alert = UIAlertController(title: "Resultado", message: message, preferredStyle: .alert)
+        let message = isCorrect ? "Correct answer".lang : "Wrong answer".lang
+        let alert = UIAlertController(title: "Result".lang, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             self.viewModel.fetchQuestion()
         }))
@@ -115,18 +115,18 @@ extension QuizViewController: QuizViewModelDelegate {
     }
     
     func didEndQuiz(finalScore: Int) {
-        let alert = UIAlertController(title: "Quiz finalizado", message: "Sua pontuação final é \(finalScore). Deseja tentar novamente?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Tentar novamente", style: .default, handler: { _ in
+        let alert = UIAlertController(title: "Quiz finished".lang, message: "Your final score is \(finalScore). Do you want to try again?".lang, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Try Again".lang, style: .default, handler: { _ in
             self.viewModel.fetchQuestion()
         }))
-        alert.addAction(UIAlertAction(title: "Voltar", style: .cancel, handler: { _ in
+        alert.addAction(UIAlertAction(title: "To go back".lang, style: .cancel, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         }))
         present(alert, animated: true, completion: nil)
     }
     
     func showError(_ error: String) {
-        let alert = UIAlertController(title: "Erro", message: error, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error".lang, message: error, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
