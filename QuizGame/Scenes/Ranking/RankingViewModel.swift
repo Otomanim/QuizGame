@@ -14,4 +14,8 @@ class RankingViewModel {
     init(coordinator: RankingCoordinator? = nil) {
         self.coordinator = coordinator
     }
+    
+    func fetchRanking() {
+        users = CoreDataManager.shared.fetchAllUsersSortedByScore()
+    }
 }

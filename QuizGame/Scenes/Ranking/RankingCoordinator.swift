@@ -16,7 +16,7 @@ class RankingCoordinator: Coordinator {
     
     func start() {
         let viewModel = RankingViewModel(coordinator: self)
-        let rankingViewController = RankingViewController()
+        let rankingViewController = RankingViewController(viewModel: viewModel)
         navigationController.pushViewController(rankingViewController, animated: true)
     }
 }

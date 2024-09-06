@@ -31,6 +31,8 @@
 		2EF1AE092C8A893C003E0A1B /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */; };
 		2EF1AE0B2C8A895D003E0A1B /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */; };
 		2EF1AE0D2C8B4860003E0A1B /* FinalScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0C2C8B4860003E0A1B /* FinalScoreView.swift */; };
+		2EF1AE102C8B96A9003E0A1B /* Person.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0E2C8B96A9003E0A1B /* Person.xcdatamodeld */; };
+		2EF1AE122C8B97AE003E0A1B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE112C8B97AE003E0A1B /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
 		2EF1AE0C2C8B4860003E0A1B /* FinalScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreView.swift; sourceTree = "<group>"; };
+		2EF1AE0F2C8B96A9003E0A1B /* Person.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Person.xcdatamodel; sourceTree = "<group>"; };
+		2EF1AE112C8B97AE003E0A1B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +106,7 @@
 		2EF1ADE62C8A4A11003E0A1B /* Application */ = {
 			isa = PBXGroup;
 			children = (
+				2EF1AE132C8BB6DC003E0A1B /* Manager */,
 				2EF1ADAF2C8A432E003E0A1B /* AppDelegate.swift */,
 				2EF1AE002C8A7C99003E0A1B /* Constants */,
 				2EF1ADE82C8A4A45003E0A1B /* Coordinator */,
@@ -168,6 +173,7 @@
 			children = (
 				2EF1ADB82C8A4330003E0A1B /* Assets.xcassets */,
 				2EF1ADBD2C8A4330003E0A1B /* Info.plist */,
+				2EF1AE0E2C8B96A9003E0A1B /* Person.xcdatamodeld */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -215,6 +221,14 @@
 				2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */,
 			);
 			path = Ranking;
+			sourceTree = "<group>";
+		};
+		2EF1AE132C8BB6DC003E0A1B /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				2EF1AE112C8B97AE003E0A1B /* CoreDataManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,9 +306,11 @@
 				2EF1ADC42C8A4564003E0A1B /* AppCoordinator.swift in Sources */,
 				2EF1ADE52C8A49B5003E0A1B /* StartViewModel.swift in Sources */,
 				2EF1AE0D2C8B4860003E0A1B /* FinalScoreView.swift in Sources */,
+				2EF1AE102C8B96A9003E0A1B /* Person.xcdatamodeld in Sources */,
 				2EF1ADE32C8A4993003E0A1B /* StartViewController.swift in Sources */,
 				2EF1ADF02C8A4BC9003E0A1B /* QuizViewModel.swift in Sources */,
 				2EF1ADC82C8A45AC003E0A1B /* QuizCoordinator.swift in Sources */,
+				2EF1AE122C8B97AE003E0A1B /* CoreDataManager.swift in Sources */,
 				2EF1ADE12C8A4958003E0A1B /* User.swift in Sources */,
 				2EF1ADFA2C8A4F2E003E0A1B /* Response.swift in Sources */,
 				2EF1AE042C8A7E1E003E0A1B /* StringExtension.swift in Sources */,
@@ -521,6 +537,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		2EF1AE0E2C8B96A9003E0A1B /* Person.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				2EF1AE0F2C8B96A9003E0A1B /* Person.xcdatamodel */,
+			);
+			currentVersion = 2EF1AE0F2C8B96A9003E0A1B /* Person.xcdatamodel */;
+			path = Person.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2EF1ADA42C8A432E003E0A1B /* Project object */;
 }

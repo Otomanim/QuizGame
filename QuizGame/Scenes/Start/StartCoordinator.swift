@@ -28,7 +28,7 @@ class StartCoordinator: Coordinator {
         quizCoordinator.start()
     }
     
-    func goToRanking() {
+    func goToRanking(users: [User]) {
         let rankingCoodinator = RankingCoordinator(navigationController: navigationController)
         rankingCoodinator.start()
     }

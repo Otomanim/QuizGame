@@ -25,6 +25,7 @@ class StartViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
         setupUI()
     }
     
@@ -44,7 +45,7 @@ class StartViewController: UIViewController {
         
         rankingButton.setTitle("Ranking", for: .normal)
         rankingButton.addTarget(self, action: #selector(showRanking), for: .touchUpInside)
-        rankingButton.isHidden = !viewModel.shouldShowRanking()
+//        rankingButton.isHidden = !viewModel.shouldShowRanking()
         view.addSubview(rankingButton)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -62,7 +63,7 @@ class StartViewController: UIViewController {
             startButton.widthAnchor.constraint(equalToConstant: 250),
             startButton.heightAnchor.constraint(equalToConstant: 250),
             
-            rankingButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 20),
+            rankingButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 100),
             rankingButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
         startButton.layer.cornerRadius = 125
@@ -86,5 +87,24 @@ class StartViewController: UIViewController {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+}
+
+extension StartViewController: StartViewModelDelegate {
+    
+    func showContinueAlert(for user: User) {
+        let alert = UIAlertController(title: "Usuário Existente", message: "Deseja continuar como \(user.name) para melhorar seu resultado?", preferredStyle: .alert)
+        
+        let continueAction = UIAlertAction(title: "Continuar", style: .default) { [weak self] _ in
+            self?.viewModel.coordinator.goToQuiz(user: user)
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel, handler: nil)
+        
+        alert.addAction(continueAction)
+        alert.addAction(cancelAction)
+        
+        // Apresenta o alerta na tela
+        self.present(alert, animated: true, completion: nil)
     }
 }

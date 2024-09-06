@@ -7,12 +7,12 @@
 
 import Foundation
 
-protocol StartViewModelCoordinatorDelegate: AnyObject {
-    func startQuiz(with user: User)
-    func showRanking()
+protocol StartViewModelDelegate: AnyObject {
+    func showContinueAlert(for user: User)
 }
 
 class StartViewModel {
+    weak var delegate: StartViewModelDelegate?
     var coordinator: StartCoordinator
     private var users: [User] = []
 
@@ -21,20 +21,30 @@ class StartViewModel {
     }
     
     func startQuiz(with name: String) {
-        if let existingUser = users.first(where: { $0.name == name }) {
-            coordinator.goToQuiz(user: existingUser)
+        if let existingUser = fetchUser(with: name) {
+            delegate?.showContinueAlert(for: existingUser)
         } else {
             let newUser = User(name: name, score: 0)
             users.append(newUser)
+            saveUser(newUser)
             coordinator.goToQuiz(user: newUser)
         }
     }
+    
+    func fetchUser(with name: String) -> User? {
+        return CoreDataManager.shared.fetchUserByName(name: name)
+    }
+    
+    private func saveUser(_ user: User) {
+            CoreDataManager.shared.saveUser(name: user.name, score: user.score)
+        }
     
     func shouldShowRanking() -> Bool {
         return !users.isEmpty
     }
     
     func showRanking() {
-//        coordinator?.goToRanking(users: users.sorted { $0.score > $0.score })
+        let sortedUsers = users.sorted { $0.score > $1.score }
+        coordinator.goToRanking(users: sortedUsers)
     }
 }

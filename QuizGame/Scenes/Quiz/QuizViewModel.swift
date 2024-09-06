@@ -70,6 +70,7 @@ class QuizViewModel {
     }
     
     private func endQuiz() {
+        CoreDataManager.shared.saveUser(name: user.name, score: score)
         delegate?.didEndQuiz(finalScore: score)
     }
 }
