@@ -5,6 +5,7 @@
 //  Created by Evandro Rodrigo Minamoto on 04/09/24.
 //
 
+import SwiftUI
 import UIKit
 
 class QuizViewController: UIViewController {
@@ -26,8 +27,8 @@ class QuizViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.delegate = self
-        viewModel.fetchQuestion()
         setupUI()
+        viewModel.fetchQuestion()
     }
     
     private func setupUI() {
@@ -105,7 +106,10 @@ class QuizViewController: UIViewController {
 extension QuizViewController: QuizViewModelDelegate {
     func didFetchQuestion(_ question: Question) {
         questionLabel.text = question.statement
-        updateUI(with: question)
+        DispatchQueue.main.async {
+            self.updateUI(with: question)
+        }
+        
     }
     
     func didSubmitAnswer(isCorrect: Bool, score: Int) {
@@ -122,14 +126,21 @@ extension QuizViewController: QuizViewModelDelegate {
     }
     
     func didEndQuiz(finalScore: Int) {
-        let alert = UIAlertController(title: "Quiz finished".lang, message: "Sua pontuação final é \(finalScore) pontos. Deseja tentar novamente?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Try Again".lang, style: .default, handler: { _ in
-            self.viewModel.restartQuiz()
-        }))
-        alert.addAction(UIAlertAction(title: "To go back".lang, style: .cancel, handler: { _ in
-            self.navigationController?.popViewController(animated: true)
-        }))
-        present(alert, animated: true, completion: nil)
+        
+        let finalScoreView = FinalScoreView(
+            score: finalScore,
+            retryAction: { [weak self] in
+                self?.viewModel.restartQuiz()
+                self?.dismiss(animated: true, completion: nil)
+            },
+            exitAction: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }
+        )
+        
+        let hostingController = UIHostingController(rootView: finalScoreView)
+        hostingController.modalPresentationStyle = .fullScreen
+        present(hostingController, animated: true, completion: nil)
     }
     
     func showError(_ error: String) {

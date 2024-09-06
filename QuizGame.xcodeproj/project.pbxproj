@@ -30,6 +30,7 @@
 		2EF1AE072C8A88D5003E0A1B /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE062C8A88D5003E0A1B /* RankingViewController.swift */; };
 		2EF1AE092C8A893C003E0A1B /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */; };
 		2EF1AE0B2C8A895D003E0A1B /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */; };
+		2EF1AE0D2C8B4860003E0A1B /* FinalScoreView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0C2C8B4860003E0A1B /* FinalScoreView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		2EF1AE062C8A88D5003E0A1B /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
+		2EF1AE0C2C8B4860003E0A1B /* FinalScoreView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */,
+				2EF1AE0C2C8B4860003E0A1B /* FinalScoreView.swift */,
 			);
 			path = Score;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				2EF1ADFD2C8A4FB2003E0A1B /* Question.swift in Sources */,
 				2EF1ADC42C8A4564003E0A1B /* AppCoordinator.swift in Sources */,
 				2EF1ADE52C8A49B5003E0A1B /* StartViewModel.swift in Sources */,
+				2EF1AE0D2C8B4860003E0A1B /* FinalScoreView.swift in Sources */,
 				2EF1ADE32C8A4993003E0A1B /* StartViewController.swift in Sources */,
 				2EF1ADF02C8A4BC9003E0A1B /* QuizViewModel.swift in Sources */,
 				2EF1ADC82C8A45AC003E0A1B /* QuizCoordinator.swift in Sources */,
