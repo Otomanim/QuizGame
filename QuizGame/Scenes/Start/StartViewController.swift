@@ -40,12 +40,20 @@ class StartViewController: UIViewController {
         
         startButton.setTitle("Start Quiz".lang, for: .normal)
         startButton.setTitleColor(.white, for: .normal)
+        startButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        startButton.layer.cornerRadius = 125
+        startButton.layer.masksToBounds = true
+        startButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         startButton.addTarget(self, action: #selector(startQuiz), for: .touchUpInside)
         view.addSubview(startButton)
         
         rankingButton.setTitle("Ranking", for: .normal)
+        rankingButton.titleLabel?.font = UIFont.systemFont(ofSize: 20)
+        rankingButton.setTitleColor(.white, for: .normal)
+        rankingButton.backgroundColor = UIColor.gray.withAlphaComponent(0.3)
+        rankingButton.layer.cornerRadius = 10
+        rankingButton.clipsToBounds = true
         rankingButton.addTarget(self, action: #selector(showRanking), for: .touchUpInside)
-//        rankingButton.isHidden = !viewModel.shouldShowRanking()
         view.addSubview(rankingButton)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -65,10 +73,10 @@ class StartViewController: UIViewController {
             
             rankingButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 100),
             rankingButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            rankingButton.widthAnchor.constraint(equalToConstant: 200),
+            rankingButton.heightAnchor.constraint(equalToConstant: 60),
         ])
-        startButton.layer.cornerRadius = 125
-        startButton.layer.masksToBounds = true
-        startButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        
     }
     
     @objc private func startQuiz() {
