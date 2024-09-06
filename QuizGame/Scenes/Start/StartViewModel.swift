@@ -13,7 +13,7 @@ protocol StartViewModelCoordinatorDelegate: AnyObject {
 }
 
 class StartViewModel {
-    weak var coordinator: StartCoordinator?
+    var coordinator: StartCoordinator
     private var users: [User] = []
 
     init(coordinator: StartCoordinator) {
@@ -22,11 +22,11 @@ class StartViewModel {
     
     func startQuiz(with name: String) {
         if let existingUser = users.first(where: { $0.name == name }) {
-            coordinator?.goToQuiz(user: existingUser)
+            coordinator.goToQuiz(user: existingUser)
         } else {
             let newUser = User(name: name, score: 0)
             users.append(newUser)
-            coordinator?.goToQuiz(user: newUser)
+            coordinator.goToQuiz(user: newUser)
         }
     }
     

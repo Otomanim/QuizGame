@@ -25,6 +25,8 @@ class QuizViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel.delegate = self
+        viewModel.fetchQuestion()
         setupUI()
     }
     
@@ -78,7 +80,7 @@ class QuizViewController: UIViewController {
     }
     
     private func updateUI(with question: Question) {
-        questionLabel.text = question.statement
+        //        questionLabel.text = question.statement
         optionsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         question.options.forEach { option in
@@ -103,21 +105,26 @@ class QuizViewController: UIViewController {
 extension QuizViewController: QuizViewModelDelegate {
     func didFetchQuestion(_ question: Question) {
         questionLabel.text = question.statement
+        updateUI(with: question)
     }
     
     func didSubmitAnswer(isCorrect: Bool, score: Int) {
         let message = isCorrect ? "Correct answer".lang : "Wrong answer".lang
         let alert = UIAlertController(title: "Result".lang, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
-            self.viewModel.fetchQuestion()
+            if self.viewModel.questionCount < self.viewModel.totalQuestions {
+                self.viewModel.fetchQuestion()
+            } else {
+                self.viewModel.checkQuizFinished()
+            }
         }))
         present(alert, animated: true, completion: nil)
     }
     
     func didEndQuiz(finalScore: Int) {
-        let alert = UIAlertController(title: "Quiz finished".lang, message: "Your final score is \(finalScore). Do you want to try again?".lang, preferredStyle: .alert)
+        let alert = UIAlertController(title: "Quiz finished".lang, message: "Sua pontuação final é \(finalScore) pontos. Deseja tentar novamente?", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Try Again".lang, style: .default, handler: { _ in
-            self.viewModel.fetchQuestion()
+            self.viewModel.restartQuiz()
         }))
         alert.addAction(UIAlertAction(title: "To go back".lang, style: .cancel, handler: { _ in
             self.navigationController?.popViewController(animated: true)

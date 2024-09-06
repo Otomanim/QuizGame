@@ -15,15 +15,16 @@ protocol QuizViewModelDelegate: AnyObject {
 }
 
 class QuizViewModel {
-    weak var coordinator: QuizCoordinator?
-    weak var delegate: QuizViewModelDelegate?
+    var coordinator: QuizCoordinator
+    weak var delegate: (QuizViewModelDelegate)?
     private let user: User
     private var currentQuestion: Question?
     private var score = 0
-    private var questionCount = 0
-    private let totalQuestions = 10
+    var questionCount = 0
+    let totalQuestions = 10
     
     init(coordinator: QuizCoordinator, user: User) {
+        self.coordinator = coordinator
         self.user = user
     }
     
@@ -36,7 +37,7 @@ class QuizViewModel {
                 self.currentQuestion = question
                 self.delegate?.didFetchQuestion(question)
             } else {
-                self.delegate?.showError("Erro ao carregar a pergunta.")
+                self.delegate?.showError("Error loading the question.".lang)
             }
         }
     }
@@ -44,25 +45,31 @@ class QuizViewModel {
     func submitAnswer(_ answer: String) {
         guard let question = currentQuestion else { return }
         
-        QuizService.shared.submitAnswer(for: question.id, answer: answer) { [weak self] result in
+        QuizService.shared.submitAnswer(for: question.id, answer: answer) { [weak self] isCorrect in
             guard let self = self else { return }
             
-            if result {
+            if isCorrect {
                 self.score += 10
             }
             
-            self.delegate?.didSubmitAnswer(isCorrect: result, score: self.score)
-            
-            if self.questionCount == self.totalQuestions {
-                self.endQuiz()
-            } else {
-                self.fetchQuestion()
-            }
+            self.delegate?.didSubmitAnswer(isCorrect: isCorrect, score: self.score)
+            self.checkQuizFinished()
         }
     }
     
+    func checkQuizFinished() {
+        if questionCount == totalQuestions {
+            endQuiz()
+        }
+    }
+    
+    func restartQuiz() {
+        questionCount = 0
+        score = 0
+        fetchQuestion()
+    }
+    
     private func endQuiz() {
-        user.score = score
-        coordinator?.showFinalScore(score: score)
+        delegate?.didEndQuiz(finalScore: score)
     }
 }

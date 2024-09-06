@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+class RankingViewModel {
+    weak var coordinator: RankingCoordinator?
+    var users: [User] = []
+    
+    init(coordinator: RankingCoordinator? = nil) {
+        self.coordinator = coordinator
+    }
+}
