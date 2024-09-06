@@ -27,6 +27,9 @@
 		2EF1ADFF2C8A75C7003E0A1B /* FinalScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */; };
 		2EF1AE022C8A7CCC003E0A1B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2EF1AE012C8A7CCC003E0A1B /* Localizable.strings */; };
 		2EF1AE042C8A7E1E003E0A1B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE032C8A7E1E003E0A1B /* StringExtension.swift */; };
+		2EF1AE072C8A88D5003E0A1B /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE062C8A88D5003E0A1B /* RankingViewController.swift */; };
+		2EF1AE092C8A893C003E0A1B /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */; };
+		2EF1AE0B2C8A895D003E0A1B /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		2EF1ADFE2C8A75C7003E0A1B /* FinalScoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalScoreViewController.swift; sourceTree = "<group>"; };
 		2EF1AE012C8A7CCC003E0A1B /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2EF1AE032C8A7E1E003E0A1B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		2EF1AE062C8A88D5003E0A1B /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
+		2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
+		2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +117,7 @@
 				2EF1ADE92C8A4A77003E0A1B /* Start */,
 				2EF1ADEA2C8A4ACB003E0A1B /* Quiz */,
 				2EF1ADEB2C8A4B13003E0A1B /* Score */,
+				2EF1AE052C8A88B9003E0A1B /* Ranking */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -197,6 +204,16 @@
 			path = Constants;
 			sourceTree = "<group>";
 		};
+		2EF1AE052C8A88B9003E0A1B /* Ranking */ = {
+			isa = PBXGroup;
+			children = (
+				2EF1AE062C8A88D5003E0A1B /* RankingViewController.swift */,
+				2EF1AE082C8A893C003E0A1B /* RankingViewModel.swift */,
+				2EF1AE0A2C8A895D003E0A1B /* RankingCoordinator.swift */,
+			);
+			path = Ranking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -277,13 +294,16 @@
 				2EF1ADE12C8A4958003E0A1B /* User.swift in Sources */,
 				2EF1ADFA2C8A4F2E003E0A1B /* Response.swift in Sources */,
 				2EF1AE042C8A7E1E003E0A1B /* StringExtension.swift in Sources */,
+				2EF1AE0B2C8A895D003E0A1B /* RankingCoordinator.swift in Sources */,
 				2EF1ADCA2C8A45D4003E0A1B /* StartCoordinator.swift in Sources */,
 				2EF1ADEE2C8A4BB8003E0A1B /* QuizViewController.swift in Sources */,
 				2EF1ADF32C8A4D9A003E0A1B /* Service.swift in Sources */,
 				2EF1ADB02C8A432E003E0A1B /* AppDelegate.swift in Sources */,
+				2EF1AE092C8A893C003E0A1B /* RankingViewModel.swift in Sources */,
 				2EF1ADF62C8A4E4F003E0A1B /* Endpoints.swift in Sources */,
 				2EF1ADFF2C8A75C7003E0A1B /* FinalScoreViewController.swift in Sources */,
 				2EF1ADC62C8A458A003E0A1B /* Coordinator.swift in Sources */,
+				2EF1AE072C8A88D5003E0A1B /* RankingViewController.swift in Sources */,
 				2EF1ADF82C8A4E92003E0A1B /* QuizService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
