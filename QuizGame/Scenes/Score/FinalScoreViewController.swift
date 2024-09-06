@@ -10,6 +10,7 @@ import UIKit
 class FinalScoreViewController: UIViewController {
     private let score: Int
     private let coordinator: QuizCoordinator
+    private  let scoreLabel = UILabel()
     
     init(score: Int, coordinator: QuizCoordinator) {
         self.score = score
@@ -28,7 +29,35 @@ class FinalScoreViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .white
         
+        scoreLabel.text = "Your_score \(score)".lang
+        scoreLabel.font = .systemFont(ofSize: 24)
+        scoreLabel.textAlignment = .center
+        view.addSubview(scoreLabel)
         
+        let retryButton = UIButton(type: .system)
+        retryButton.setTitle("Try Again".lang, for: .normal)
+        retryButton.addTarget(self, action: #selector(retry), for: .touchUpInside)
+        view.addSubview(retryButton)
+        
+        let exitButton = UIButton(type: .system)
+        exitButton.setTitle("To go out".lang, for: .normal)
+        exitButton.addTarget(self, action: #selector(exitQuiz), for: .touchUpInside)
+        view.addSubview(exitButton)
+        
+        scoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        retryButton.translatesAutoresizingMaskIntoConstraints = false
+        exitButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            scoreLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            scoreLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -20),
+            
+            retryButton.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 20),
+            retryButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            exitButton.topAnchor.constraint(equalTo: retryButton.bottomAnchor, constant: 20),
+            exitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+        ])
     }
     
     @objc private func retry() {
