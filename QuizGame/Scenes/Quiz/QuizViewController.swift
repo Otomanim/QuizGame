@@ -24,8 +24,7 @@ class QuizViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
         viewModel.delegate = self
         setupUI()
         viewModel.fetchQuestion()
