@@ -31,7 +31,7 @@ class QuizViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .cyan
+        view.backgroundColor = UIColor.cyan.withAlphaComponent(0.8)
         
         questionLabel.font = .systemFont(ofSize: 18)
         questionLabel.numberOfLines = 0
@@ -44,6 +44,11 @@ class QuizViewController: UIViewController {
         
         let submitButton = UIButton(type: .system)
         submitButton.setTitle("Send reply".lang, for: .normal)
+        submitButton.layer.borderWidth = 1
+        submitButton.layer.borderColor = UIColor.white.cgColor
+        submitButton.layer.cornerRadius = 10
+        submitButton.clipsToBounds = true
+        submitButton.backgroundColor = UIColor.white.withAlphaComponent(0.5)
         submitButton.addTarget(self, action: #selector(submitAnswer), for: .touchUpInside)
         view.addSubview(submitButton)
         
@@ -62,6 +67,8 @@ class QuizViewController: UIViewController {
             
             submitButton.topAnchor.constraint(equalTo: optionsStackView.bottomAnchor, constant: 20),
             submitButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            submitButton.widthAnchor.constraint(equalToConstant: 300),
+            submitButton.heightAnchor.constraint(equalToConstant: 44),
         ])
     }
     

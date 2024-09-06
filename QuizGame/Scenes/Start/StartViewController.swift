@@ -29,19 +29,22 @@ class StartViewController: UIViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.cyan.withAlphaComponent(0.3)
         
         nameTextField.placeholder = "Enter your name".lang
         nameTextField.borderStyle = .roundedRect
+        nameTextField.layer.cornerRadius = 10
+        nameTextField.clipsToBounds = true
         view.addSubview(nameTextField)
         
         startButton.setTitle("Start Quiz".lang, for: .normal)
+        startButton.setTitleColor(.white, for: .normal)
         startButton.addTarget(self, action: #selector(startQuiz), for: .touchUpInside)
         view.addSubview(startButton)
         
         rankingButton.setTitle("Ranking", for: .normal)
         rankingButton.addTarget(self, action: #selector(showRanking), for: .touchUpInside)
-//        rankingButton.isHidden = !viewModel.shouldShowRanking()
+        rankingButton.isHidden = !viewModel.shouldShowRanking()
         view.addSubview(rankingButton)
         
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -50,15 +53,21 @@ class StartViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             nameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            nameTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            nameTextField.widthAnchor.constraint(equalToConstant: 200),
+            nameTextField.topAnchor.constraint(equalTo: view.topAnchor, constant: 200),
+            nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
             
-            startButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20),
+            startButton.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 100),
             startButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            startButton.widthAnchor.constraint(equalToConstant: 250),
+            startButton.heightAnchor.constraint(equalToConstant: 250),
             
             rankingButton.topAnchor.constraint(equalTo: startButton.bottomAnchor, constant: 20),
             rankingButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
+        startButton.layer.cornerRadius = 125
+        startButton.layer.masksToBounds = true
+        startButton.backgroundColor = UIColor.white.withAlphaComponent(0.3)
     }
     
     @objc private func startQuiz() {
