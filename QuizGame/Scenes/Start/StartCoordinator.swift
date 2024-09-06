@@ -29,7 +29,8 @@ class StartCoordinator: Coordinator {
     }
     
     func goToRanking() {
-//        let rankingCoodinator
+        let rankingCoodinator = RankingCoordinator(navigationController: navigationController)
+        rankingCoodinator.start()
     }
 }
 

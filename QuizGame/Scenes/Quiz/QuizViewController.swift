@@ -80,14 +80,39 @@ class QuizViewController: UIViewController {
     }
     
     private func updateUI(with question: Question) {
-        //        questionLabel.text = question.statement
         optionsStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         question.options.forEach { option in
             let button = UIButton(type: .system)
             button.setTitle(option, for: .normal)
+            button.titleLabel?.numberOfLines = 0
+            button.titleLabel?.lineBreakMode = .byCharWrapping
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
+            button.titleLabel?.minimumScaleFactor = 0.5
+            button.contentHorizontalAlignment = .center
+            button.backgroundColor = UIColor.opaqueSeparator.withAlphaComponent(0.5)
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.lightGray.cgColor
+            button.layer.cornerRadius = 8.0
+            button.clipsToBounds = true
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            button.setContentHuggingPriority(.defaultLow, for: .vertical)
+            button.setContentCompressionResistancePriority(.required, for: .vertical)
             button.addTarget(self, action: #selector(optionSelected(_:)), for: .touchUpInside)
             optionsStackView.addArrangedSubview(button)
+            let heightConstraint = button.heightAnchor.constraint(greaterThanOrEqualToConstant: 44)
+            let characterCount = option.count
+            if characterCount > 50 && characterCount <= 80{
+                heightConstraint.constant = 60
+            }
+            if characterCount > 80 {
+                heightConstraint.constant = 100
+            }
+            NSLayoutConstraint.activate([
+                button.widthAnchor.constraint(equalTo: optionsStackView.widthAnchor),
+                heightConstraint,
+            ])
         }
     }
     
@@ -129,11 +154,12 @@ extension QuizViewController: QuizViewModelDelegate {
         let finalScoreView = FinalScoreView(
             score: finalScore,
             retryAction: { [weak self] in
-                self?.viewModel.restartQuiz()
                 self?.dismiss(animated: true, completion: nil)
+                self?.viewModel.restartQuiz()
             },
             exitAction: { [weak self] in
-                self?.navigationController?.popViewController(animated: true)
+                self?.dismiss(animated: true, completion: nil)
+                self?.viewModel.coordinator.backToStart()
             }
         )
         

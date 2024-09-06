@@ -29,6 +29,6 @@ class QuizCoordinator: Coordinator {
     }
     
     func backToStart() {
-        navigationController.popToRootViewController(animated: true)
+        navigationController.popToRootViewController(animated: false)
     }
 }
